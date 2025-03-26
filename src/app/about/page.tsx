@@ -3,6 +3,7 @@ import {
   Button,
   Column,
   Flex,
+  Grid,
   Heading,
   Icon,
   IconButton,
@@ -14,6 +15,7 @@ import { baseURL } from "@/app/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
 import { person, about, social } from "@/app/resources/content";
+import SocialButtons from "@/components/general/social/social";
 
 export async function generateMetadata() {
   const title = about.title;
@@ -136,7 +138,7 @@ export default function About() {
             fillWidth
             minHeight="160"
             vertical="center"
-            marginBottom="32"
+            marginBottom="8"
           >
             {about.calendar.display && (
               <Flex
@@ -173,38 +175,11 @@ export default function About() {
             >
               {person.role}
             </Text>
-            {social.length > 0 && (
-              <Flex className={styles.blockAlign} paddingTop="20" paddingBottom="8" gap="8" wrap horizontal="center" fitWidth>
-                {social.map(
-                  (item) =>
-                    item.link && (
-                        <>
-                            <Button
-                                className="s-flex-hide"
-                                key={item.name}
-                                href={item.link}
-                                prefixIcon={item.icon}
-                                label={item.name}
-                                size="s"
-                                variant="secondary"
-                            />
-                            <IconButton
-                                className="s-flex-show"
-                                size="l"
-                                key={`${item.name}-icon`}
-                                href={item.link}
-                                icon={item.icon}
-                                variant="secondary"
-                            />
-                        </>
-                    ),
-                )}
-              </Flex>
-            )}
+            <SocialButtons />
           </Column>
 
           {about.intro.display && (
-            <Column textVariant="body-default-l" fillWidth gap="m" marginBottom="xl">
+            <Column textVariant="body-default-l" fillWidth gap="m" marginBottom="m">
               {about.intro.description}
             </Column>
           )}
@@ -217,7 +192,7 @@ export default function About() {
               <Column fillWidth gap="l" marginBottom="40">
                 {about.work.experiences.map((experience, index) => (
                   <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth>
-                    <Flex fillWidth horizontal="space-between" vertical="end" marginBottom="4">
+                    <Flex fillWidth horizontal="space-between" vertical="end" marginBottom="2">
                       <Text id={experience.company} variant="heading-strong-l">
                         {experience.company}
                       </Text>
@@ -225,10 +200,10 @@ export default function About() {
                         {experience.timeframe}
                       </Text>
                     </Flex>
-                    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
+                    <Text variant="body-default-m" onBackground="brand-weak" marginBottom="m">
                       {experience.role}
                     </Text>
-                    <Column as="ul" gap="16">
+                    <Column as="ul" gap="4">
                       {experience.achievements.map((achievement: JSX.Element, index: number) => (
                         <Text
                           as="li"
@@ -271,26 +246,6 @@ export default function About() {
             </>
           )}
 
-          {about.studies.display && (
-            <>
-              <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
-                {about.studies.title}
-              </Heading>
-              <Column fillWidth gap="l" marginBottom="40">
-                {about.studies.institutions.map((institution, index) => (
-                  <Column key={`${institution.name}-${index}`} fillWidth gap="4">
-                    <Text id={institution.name} variant="heading-strong-l">
-                      {institution.name}
-                    </Text>
-                    <Text variant="heading-default-xs" onBackground="neutral-weak">
-                      {institution.description}
-                    </Text>
-                  </Column>
-                ))}
-              </Column>
-            </>
-          )}
-
           {about.technical.display && (
             <>
               <Heading
@@ -301,44 +256,73 @@ export default function About() {
               >
                 {about.technical.title}
               </Heading>
-              <Column fillWidth gap="l">
-                {about.technical.skills.map((skill, index) => (
-                  <Column key={`${skill}-${index}`} fillWidth gap="4">
-                    <Text variant="heading-strong-l">{skill.title}</Text>
-                    <Text variant="body-default-m" onBackground="neutral-weak">
-                      {skill.description}
-                    </Text>
-                    {skill.images && skill.images.length > 0 && (
-                      <Flex fillWidth paddingTop="m" gap="12" wrap>
-                        {skill.images.map((image, index) => (
-                          <Flex
-                            key={index}
-                            border="neutral-medium"
+
+              {/* trocar por botões com ícones */}
+              <Grid fillWidth gap="l" columns="4">
+              {about.technical.skills.map((skill, index) => (
+                <Grid key={`${skill}-${index}`} fillWidth gap="4">
+                  <Text variant="heading-strong-s">{skill.title}</Text>
+                  <Text variant="body-default-m" onBackground="neutral-weak">
+                    {skill.description}
+                  </Text>
+                  {skill.images && skill.images.length > 0 && (
+                    <Grid
+                      fillWidth
+                      paddingTop="m"
+                      gap="12"
+                      columns="3"
+                      style={{ gridTemplateRows: "repeat(4, auto)" }} // 4 linhas automáticas
+                    >
+                      {skill.images.map((image, index) => (
+                        <Grid
+                          key={index}
+                          border="neutral-medium"
+                          radius="m"
+                          //@ts-ignore
+                          minWidth={image.width}
+                          //@ts-ignore
+                          height={image.height}
+                        >
+                          <SmartImage
+                            enlarge
                             radius="m"
                             //@ts-ignore
-                            minWidth={image.width}
+                            sizes={image.width.toString()}
                             //@ts-ignore
-                            height={image.height}
-                          >
-                            <SmartImage
-                              enlarge
-                              radius="m"
-                              //@ts-ignore
-                              sizes={image.width.toString()}
-                              //@ts-ignore
-                              alt={image.alt}
-                              //@ts-ignore
-                              src={image.src}
-                            />
-                          </Flex>
-                        ))}
-                      </Flex>
-                    )}
-                  </Column>
-                ))}
-              </Column>
+                            alt={image.alt}
+                            //@ts-ignore
+                            src={image.src}
+                          />
+                        </Grid>
+                      ))}
+                    </Grid>
+                  )}
+                </Grid>
+              ))}
+              </Grid>
             </>
           )}
+
+          {about.studies.display && (
+                      <>
+                        <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m" marginTop="l">
+                          {about.studies.title}
+                        </Heading>
+                        <Column fillWidth gap="l" marginBottom="40">
+                          {about.studies.institutions.map((institution, index) => (
+                            <Column key={`${institution.name}-${index}`} fillWidth gap="4">
+                              <Text id={institution.name} variant="heading-strong-l">
+                                {institution.name}
+                              </Text>
+                              <Text variant="heading-default-xs" onBackground="neutral-weak">
+                                {institution.description}
+                              </Text>
+                            </Column>
+                          ))}
+                        </Column>
+                      </>
+          )}
+
         </Column>
       </Flex>
     </Column>

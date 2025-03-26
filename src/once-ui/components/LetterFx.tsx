@@ -85,7 +85,7 @@ const LetterFx = forwardRef<HTMLSpanElement, LetterFxProps>(
   (
     {
       children,
-      trigger = "hover",
+      trigger = "instant",
       speed = "medium",
       charset = defaultCharset,
       onTrigger,
