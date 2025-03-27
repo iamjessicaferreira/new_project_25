@@ -25,9 +25,6 @@ const EmblaCarousel: React.FC<PropType> = ({ options }) => {
                 <div>
                   <EmblaSlideImage src={skill.icon} />
                 </div>
-                {/* <EmblaGridItem>
-                  <EmblaSlideImage src={skill.icon} />
-                </EmblaGridItem> */}
               </div>
             </EmblaSlide>
           ))}
@@ -45,7 +42,23 @@ const EmblaContainer = styled.section`
   margin: auto;
   --slide-height: 5rem;
   --slide-spacing: 0.5rem;
-  --slide-size: 9.5%;
+  --slide-size: 9.5%; 
+
+  @media (max-width: 1200px) {
+    --slide-size: 20%; 
+  }
+
+  @media (max-width: 768px) {
+    --slide-size: 50%;
+    --slide-spacing: 1rem; 
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+    --slide-size: 80%;
+    --slide-spacing: 1.5rem;
+    padding: 10px;
+  }
 `;
 
 const EmblaViewport = styled.div`
@@ -73,4 +86,6 @@ const EmblaSlideImage = styled.img`
   height: var(--slide-height);
   user-select: none;
   padding: 3px;
+  width: 100%; 
+  object-fit: contain; 
 `;

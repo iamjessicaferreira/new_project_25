@@ -1,0 +1,9 @@
+.smart-image-mine {
+    display: flex;
+  }
+
+  @media (max-width: 767px) {
+    .smart-image-mine {
+      display: none;
+    }
+  }

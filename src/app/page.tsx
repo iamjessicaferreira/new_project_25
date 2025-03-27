@@ -8,15 +8,13 @@ import { home, about, person, newsletter, social } from "@/app/resources/content
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import SocialButtons from "@/components/general/social/social";
-// import TechCarousel from "@/components/general/home/carrousel";
+import './utils/page.css'; 
 
 import EmblaCarousel from "@/components/general/home/Carousel";
 import type { EmblaOptionsType } from 'embla-carousel'
 
-
-
 const OPTIONS: EmblaOptionsType = {  dragFree: true, direction: 'rtl', loop: true }
-const SLIDE_COUNT = 5
+
 
 export async function generateMetadata() {
   const title = home.title;
@@ -90,8 +88,8 @@ export default function Home() {
               {home.subline}
             </Text>
           </RevealFx>
-  
-          <RevealFx translateY="12" delay={0.4} horizontal="space-between" gap="8" vertical="end" >
+
+          <RevealFx translateY="12" delay={0.4} horizontal="space-between" gap="8" vertical="end">
             <Button
               id="about"
               data-border="rounded"
@@ -114,24 +112,31 @@ export default function Home() {
             <SocialButtons />
           </RevealFx>
         </Column>
-        <TiltFx
-          maxWidth={24}
-  aspectRatio={0}
-  radius="l"
->
-<SmartImage
-            enlarge
-            radius="m"
-            //@ts-ignore
-            sizes={'50vw'}
-            //@ts-ignore
-            // alt={image.alt}
-            //@ts-ignore
-            src={'/images/me.svg'}
-          />
-      </TiltFx>
-        
+
+        <Flex
+          mobileDirection="column"   
+          direction="row"            
+          fillWidth
+          paddingX="s"
+          paddingTop="0"
+          paddingBottom="24"
+          gap="m"
+          className="smart-image-mine"
+        >
+          <TiltFx maxWidth={24} aspectRatio={0} radius="l">
+            
+            <SmartImage
+              enlarge
+              radius="m"
+              sizes="50vw"
+              src="/images/me.svg"
+              className="smart-image"
+            />
+          </TiltFx>
+        </Flex>
       </Row>
+
+
 
       <RevealFx translateY="16" delay={0.6}>
       <div>
