@@ -109,7 +109,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
         overflow="hidden"
         position="relative"
         zIndex={0}
-        cursor={enlarge ? "interactive" : ""}
+        cursor={undefined}
         style={{
           outline: "none",
           isolation: "isolate",
@@ -118,7 +118,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
           borderRadius: isEnlarged ? "0" : undefined,
           ...calculateTransform(),
         }}
-        onClick={handleClick}
+        // onClick={handleClick}
         {...rest}
       >
         {isLoading && <Skeleton shape="block" />}
@@ -170,11 +170,11 @@ const SmartImage: React.FC<SmartImageProps> = ({
           vertical="center"
           position="fixed"
           background="overlay"
-          onClick={handleClick}
+          // onClick={handleClick}
           top="0"
           left="0"
           opacity={isEnlarged ? 100 : 0}
-          cursor="interactive"
+          cursor={undefined}
           transition="macro-medium"
           style={{
             width: "100vw",

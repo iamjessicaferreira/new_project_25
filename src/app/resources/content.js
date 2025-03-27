@@ -7,7 +7,7 @@ const person = {
 		return `${this.firstName} ${this.lastName}`;
 	},
 	role: "Fullstack Software Engineer",
-	avatar: "/images/avatar.jpg",
+	avatar: "/images/avatar.jpeg",
 	location: "Brazil", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
 	languages: ["English", "Portuguese", "French"], // optional: Leave the array empty if you don't want to display languages
 };
@@ -70,30 +70,29 @@ const home = {
 		</>
 	),
 	skillset_title: <>What I bring to the table?</>,
-	intro_title: <>Why choosing me?</>,
+	intro_title: <>Why choose me?</>,
 	skills: [
-		{ name: "React", icon: "/images/avatar.jpg" },
-		{ name: "Next.js", icon: "/images/avatar.jpg" },
-		{ name: "TypeScript", icon: "/images/avatar.jpg" },
-		{ name: "AWS", icon: "/images/avatar.jpg" },
-		{ name: "JavaScript", icon: "/images/avatar.jpg" },
-		{ name: "Git/Github/Gitlab", icon: "/images/avatar.jpg" },
-		{ name: "HTML5", icon: "/images/avatar.jpg" },
-		{ name: "CSS3", icon: "/images/avatar.jpg" },
-		{ name: "PHP", icon: "/images/avatar.jpg" },
-		{ name: "Python", icon: "/images/avatar.jpg" },
-		{ name: "Django", icon: "/images/avatar.jpg" },
-		{ name: "SCRUM", icon: "/images/avatar.jpg" },
-		{ name: "Tailwind CSS", icon: "/images/avatar.jpg" },
-		{ name: "Agile", icon: "/images/avatar.jpg" },
-		{ name: "Wordpress", icon: "/images/avatar.jpg" },
-		{ name: "Jest", icon: "/images/avatar.jpg" },
-		{ name: "Docker", icon: "/images/avatar.jpg" },
-		{ name: "MySQL", icon: "/images/avatar.jpg" },
-		{ name: "Linux", icon: "/images/avatar.jpg" },
-		{ name: "Testing", icon: "/images/avatar.jpg" },
-		{ name: "Metronic", icon: "/images/avatar.jpg" },
-		{ name: "Zustand", icon: "/images/avatar.jpg" },
+		{ name: "React", icon: "/images/skills/react.png" },
+		{ name: "Next.js", icon: "/images/skills/nextlogo.png" },
+		{ name: "TypeScript", icon: "/images/skills/ts.png" },
+		{ name: "AWS", icon: "/images/skills/aws.png" },
+		{ name: "JavaScript", icon: "/images/skills/js.png" },
+		{ name: "Git/Github/Gitlab", icon: "/images/skills/git.png" },
+		{ name: "HTML5", icon: "/images/skills/html.png" },
+		{ name: "CSS3", icon: "/images/skills/css.svg" },
+		{ name: "Redux", icon: "/images/skills/redux.png" },
+		{ name: "PHP", icon: "/images/skills/phplogo.png" },
+		{ name: "Python", icon: "/images/skills/python.png" },
+		{ name: "Django", icon: "/images/skills/django.png" },
+		{ name: "Tailwind CSS", icon: "/images/skills/tailwind.png" },
+		{ name: "Agile", icon: "/images/skills/agile.png" },
+		{ name: "Wordpress", icon: "/images/skills/wp.png" },
+		{ name: "Jest", icon: "/images/skills/jest.png" },
+		{ name: "Docker", icon: "/images/skills/docker.png" },
+		{ name: "MySQL", icon: "/images/skills/mysql.png" },
+		{ name: "Linux", icon: "/images/skills/linux.png" },
+		{ name: "Metronic", icon: "/images/skills/metronic.png" },
+		{ name: "Zustand", icon: "/images/skills/zustand.png" },
 	],
 	intro_text: (
 		<>
@@ -193,11 +192,7 @@ const about = {
 					<>Automated processes with AWS Lambda, reducing manual workload.</>,
 					<>
 						Be able to understand and work with Cloud Computing, Lambdas and
-						other AWS servicesDevelop endpoints (CRUD); Participate in the
-						development of features from FrontEnd to BackEnd Be able to
-						understand and work with Databases Automate processes Be able to
-						understand and work with Cloud Computing, Lambdas and other AWS
-						services .
+						other AWS servicesDevelop endpoints (CRUD);
 					</>,
 				],
 				images: [],

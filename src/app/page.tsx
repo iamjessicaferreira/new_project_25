@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Heading, Flex, Text, Button, Avatar, RevealFx, Arrow, Column, IconButton, LetterFx, Badge, Grid } from "@/once-ui/components";
+import { Heading, Flex, Text, Button, Avatar, RevealFx, Arrow, Column, IconButton, LetterFx, Badge, Grid, Row, SmartImage, TiltFx, GlitchFx } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
 
 import { baseURL, routes } from "@/app/resources";
@@ -9,6 +9,14 @@ import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import SocialButtons from "@/components/general/social/social";
 // import TechCarousel from "@/components/general/home/carrousel";
+
+import EmblaCarousel from "@/components/general/home/Carousel";
+import type { EmblaOptionsType } from 'embla-carousel'
+
+
+
+const OPTIONS: EmblaOptionsType = {  dragFree: true, direction: 'rtl', loop: true }
+const SLIDE_COUNT = 5
 
 export async function generateMetadata() {
   const title = home.title;
@@ -65,7 +73,7 @@ export default function Home() {
           }),
         }}
       />
-      <Column fillWidth paddingY="l" gap="m">
+      <Row fillWidth paddingY="l" gap="m">
         <Column maxWidth="m">
           <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="xs">
             <Heading wrap="balance" variant="display-strong-l">
@@ -106,43 +114,63 @@ export default function Home() {
             <SocialButtons />
           </RevealFx>
         </Column>
-      </Column>
+        <TiltFx
+          maxWidth={24}
+  aspectRatio={0}
+  radius="l"
+>
+<SmartImage
+            enlarge
+            radius="m"
+            //@ts-ignore
+            sizes={'50vw'}
+            //@ts-ignore
+            // alt={image.alt}
+            //@ts-ignore
+            src={'/images/me.svg'}
+          />
+      </TiltFx>
+        
+      </Row>
 
-      <RevealFx translateY="16" delay={0.6} >
-        <Column>
-          <Heading as="h2" variant="display-strong-xs" wrap="balance" align="center">
-           {home.skillset_title}
+      <RevealFx translateY="16" delay={0.6}>
+      <div>
+        <Heading as="h2" variant="display-strong-xs" wrap="balance" align="center">
+          {home.skillset_title}
           </Heading>
-          <Grid fillWidth gap="l" columns="6" marginTop="40" >          
-                  {home.skills.map((skill) => {
-                    return <Badge 
-                      title={skill.name}
-                      icon={skill.icon}
-                      arrow={false}
-                    />
-                  })}
-
-              </Grid>                  
-        </Column>
-       
-      </RevealFx>
+          <EmblaCarousel options={OPTIONS} />
+      </div>
+    </RevealFx>
 
       <RevealFx translateY="16" delay={0.6} gap="xl"  paddingLeft="l">
+        
+      <GlitchFx
+  fillWidth
+  speed="medium"
+>
         <Heading as="h2" variant="display-strong-xs" wrap="balance">
               {home.intro_title}
-        </Heading>
-        <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
+          </Heading>
+          </GlitchFx>
+        <Text
+          wrap="balance"
+          onBackground="neutral-weak"
+          align="right"
+          variant="heading-default-xl"
+          paddingLeft="l"
+          style={{ width: '350rem' }}
+        >
               {home.intro_text}
             </Text>
-        {/* imagem descritiva dizendo o que eu faço */}
       </RevealFx>
 
       <RevealFx translateY="16" delay={0.6} gap="xl"  paddingLeft="l" align="center">
-        <Column>
+        <Column horizontal="center">
           <Heading as="h2" variant="display-strong-xs" wrap="balance" marginBottom="40">
                 {home.projects_title}
           </Heading>
-          <Projects range={[2]} />
+          <Projects range={[1, 2]} />
+          <Button  href="/work" variant="secondary"> View other projects </Button>
         </Column>
        
       </RevealFx>

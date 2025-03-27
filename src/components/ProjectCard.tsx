@@ -2,13 +2,17 @@
 
 import {
   AvatarGroup,
+  Button,
   Carousel,
   Column,
   Flex,
   Heading,
+  Icon,
+  Line,
   SmartLink,
   Text,
 } from "@/once-ui/components";
+import { VscLinkExternal } from "react-icons/vsc";
 
 interface ProjectCardProps {
   href: string;
@@ -19,6 +23,7 @@ interface ProjectCardProps {
   description: string;
   avatars: { src: string }[];
   link: string;
+  code?: string;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -29,9 +34,15 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   avatars,
   link,
+  code
 }) => {
+  console.log(code)
   return (
-    <Column fillWidth gap="m">
+    <Column
+      fillWidth gap="m"
+      border="neutral-medium"
+      radius={'s-4'}
+    >
       <Carousel
         sizes="(max-width: 960px) 100vw, 960px"
         images={images.map((image) => ({
@@ -41,11 +52,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       />
       <Flex
         mobileDirection="column"
+        direction="column"
         fillWidth
         paddingX="s"
-        paddingTop="12"
+        paddingTop="0"
         paddingBottom="24"
-        gap="l"
+        gap="m"
       >
         {title && (
           <Flex flex={5}>
@@ -54,32 +66,32 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </Heading>
           </Flex>
         )}
-        {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
+        {(description?.trim() || content?.trim()) && (
           <Column flex={7} gap="16">
-            {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
-            {description?.trim() && (
+              {description?.trim() && (
               <Text wrap="balance" variant="body-default-s" onBackground="neutral-weak">
                 {description}
               </Text>
             )}
-            <Flex gap="24" wrap>
-              {content?.trim() && (
-                <SmartLink
-                  suffixIcon="arrowRight"
-                  style={{ margin: "0", width: "fit-content" }}
-                  href={href}
+
+  <Line background="neutral-alpha-medium" />
+            <Flex gap="24" wrap horizontal="space-between">
+              
+                <Button
+                variant="primary"
+                onClick={ () => window.open(`{${link}}`)}
                 >
-                  <Text variant="body-default-s">Read case study</Text>
-                </SmartLink>
-              )}
-              {link && (
-                <SmartLink
-                  suffixIcon="arrowUpRightFromSquare"
-                  style={{ margin: "0", width: "fit-content" }}
-                  href={link}
-                >
-                  <Text variant="body-default-s">View project</Text>
-                </SmartLink>
+                  <Text paddingRight="4" variant="body-default-s">Preview online</Text>
+                  <VscLinkExternal /> 
+              </Button>
+               
+              {code && (
+                <Button
+                  variant="secondary"
+                  onClick={ () => window.open(`{${code}}`)}
+              >
+                <Text variant="body-default-s">Code</Text>
+              </Button>
               )}
             </Flex>
           </Column>
