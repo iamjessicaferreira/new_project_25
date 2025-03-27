@@ -192,7 +192,7 @@ const about = {
 					<>Automated processes with AWS Lambda, reducing manual workload.</>,
 					<>
 						Be able to understand and work with Cloud Computing, Lambdas and
-						other AWS servicesDevelop endpoints (CRUD);
+						other AWS servicesDevelop endpoints (CRUD) ;
 					</>,
 				],
 				images: [],
