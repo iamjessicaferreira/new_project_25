@@ -95,7 +95,7 @@ export default function Home() {
             <Button
               id="about"
               data-border="rounded"
-              href="/about"
+              href="/about/"
               variant="secondary"
               size="m"
               arrowIcon

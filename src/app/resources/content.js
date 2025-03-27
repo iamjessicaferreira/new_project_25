@@ -8,7 +8,7 @@ const person = {
 	},
 	role: "Fullstack Software Engineer",
 	avatar: "/images/avatar.jpeg",
-	location: "Brazil", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+	location: "Pernambuco - Brazil",
 	languages: ["English", "Portuguese", "French"], // optional: Leave the array empty if you don't want to display languages
 };
 
@@ -29,7 +29,7 @@ const social = [
 	{
 		name: "GitHub",
 		icon: "github",
-		link: "https://github.com/mechamoje",
+		link: "https://github.com/iamjessicaferreira",
 	},
 	{
 		name: "LinkedIn",
@@ -144,8 +144,19 @@ const about = {
 			{
 				company: "CESAR",
 				timeframe: "Since 2024",
-				role: "Software Engineer",
+				role: "Software Engineer - Full-time",
 				achievements: [
+					<>
+						At CESAR, I am working on the development of a virtual assistant
+						with Generative Artificial Intelligence (AI Gen) to support
+						companies in implementing ESG practices. Additionally, we are
+						building a web platform for the greenhouse gas inventory module,
+						focusing on automating data collection and calculations to increase
+						efficiency for client companies. My responsibilities include leading
+						agile ceremonies, organizing the backlog, writing user stories, and
+						handling end-to-end implementation of features and automated
+						calculations.{" "}
+					</>,
 					<>Developing software with Python, React, and PostgreSQL.</>,
 					<>Reviewing processes and integrating technical and product teams.</>,
 					<>Understanding and executing scalable software architectures.</>,
@@ -162,8 +173,17 @@ const about = {
 			{
 				company: "JOTA",
 				timeframe: "2024",
-				role: "Fullstack Developer",
+				role: "Fullstack Developer - Full-time",
 				achievements: [
+					<>
+						I contributed to the ideation and launch of JOTA Único, a
+						personalized news portal for over 2 million monthly users. My role
+						involved defining KPIs, implementing agile processes, developing key
+						features, and creating a design system. I also participated in
+						discussions on removing the paywall, organized training workshops,
+						introduced front-end testing practices, and implemented SEO best
+						practices, leading to significant performance improvements.
+					</>,
 					<>
 						Implementation and configuration of JIRA to organize the backlog and
 						track demands.
@@ -182,7 +202,7 @@ const about = {
 			{
 				company: "JOTA",
 				timeframe: "2023",
-				role: "Trainee Fullstack Developer",
+				role: "Trainee Fullstack Developer - Full-time",
 				achievements: [
 					<>Develop endpoints (CRUD);</>,
 					<>
@@ -221,6 +241,15 @@ const about = {
 				name: "University of Joaquim Nabuco",
 				description: <>Studied Systems and Analysis development.</>,
 			},
+			{
+				name: "Quality and Product management Certificate",
+			},
+			{
+				name: "Front-End React Developer Certificate",
+			},
+			{
+				name: "Learn Python with Programming Certificate",
+			},
 		],
 	},
 	technical: {
@@ -228,64 +257,109 @@ const about = {
 		title: "Technical skills",
 		skills: [
 			{
-				title: "Figma",
+				title: "React",
 				description: <></>,
-				// optional: leave the array empty if you don't want to display images
-				images: [],
-			},
-			{
-				title: "React.js",
-				description: <></>,
-				// optional: leave the array empty if you don't want to display images
-				images: [],
-			},
-			{
-				title: "JavaScript",
-				description: <></>,
-				// optional: leave the array empty if you don't want to display images
-				images: [],
-			},
-			{
-				title: "PHP",
-				description: <></>,
-				// optional: leave the array empty if you don't want to display images
-				images: [],
+				images: ["/images/skills/react.png"],
 			},
 			{
 				title: "Next.js",
 				description: <></>,
-				// optional: leave the array empty if you don't want to display images
-				images: [],
+				images: ["/images/skills/nextlogo.png"],
 			},
 			{
-				title: "Figma",
+				title: "TypeScript",
 				description: <></>,
-				// optional: leave the array empty if you don't want to display images
-				images: [],
+				images: ["/images/skills/ts.png"],
 			},
 			{
-				title: "React.js",
+				title: "AWS",
 				description: <></>,
-				// optional: leave the array empty if you don't want to display images
-				images: [],
+				images: ["/images/skills/aws.png"],
 			},
 			{
 				title: "JavaScript",
 				description: <></>,
-				// optional: leave the array empty if you don't want to display images
-				images: [],
+				images: ["/images/skills/js.png"],
+			},
+			{
+				title: "Git/Github/Gitlab",
+				description: <></>,
+				images: ["/images/skills/git.png"],
+			},
+			{
+				title: "HTML5",
+				description: <></>,
+				images: ["/images/skills/html.png"],
+			},
+			{
+				title: "CSS3",
+				description: <></>,
+				images: ["/images/skills/css.svg"],
+			},
+			{
+				title: "Redux",
+				description: <></>,
+				images: ["/images/skills/redux.png"],
 			},
 			{
 				title: "PHP",
 				description: <></>,
-				// optional: leave the array empty if you don't want to display images
-				images: [],
+				images: ["/images/skills/phplogo.png"],
 			},
 			{
-				title: "Next.js",
+				title: "Python",
 				description: <></>,
-				// optional: leave the array empty if you don't want to display images
-				images: [],
+				images: ["/images/skills/python.png"],
+			},
+			{
+				title: "Django",
+				description: <></>,
+				images: ["/images/skills/django.png"],
+			},
+			{
+				title: "Tailwind CSS",
+				description: <></>,
+				images: ["/images/skills/tailwind.png"],
+			},
+			{
+				title: "Agile",
+				description: <></>,
+				images: ["/images/skills/agile.png"],
+			},
+			{
+				title: "Wordpress",
+				description: <></>,
+				images: ["/images/skills/wp.png"],
+			},
+			{
+				title: "Jest",
+				description: <></>,
+				images: ["/images/skills/jest.png"],
+			},
+			{
+				title: "Docker",
+				description: <></>,
+				images: ["/images/skills/docker.png"],
+			},
+			{
+				title: "MySQL",
+				description: <></>,
+				images: ["/images/skills/mysql.png"],
+			},
+			{
+				title: "Linux",
+				description: <></>,
+				images: ["/images/skills/linux.png"],
+			},
+			{
+				title: "Metronic",
+				description: <></>,
+				images: ["/images/skills/metronic.png"],
+			},
+			{
+				title: "Zustand",
+				description: <></>,
+				images: ["/images/skills/zustand.png"],
 			},
 		],
 	},

@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Badge,
   Button,
   Column,
   Flex,
@@ -29,7 +30,7 @@ export async function generateMetadata() {
       title,
       description,
       type: "website",
-      url: `https://${baseURL}/about`,
+      url: `https://${baseURL}/about/`,
       images: [
         {
           url: ogImage,
@@ -81,7 +82,7 @@ export default function About() {
             name: person.name,
             jobTitle: person.role,
             description: about.intro.description,
-            url: `https://${baseURL}/about`,
+            url: `https://${baseURL}/about/`,
             image: `${baseURL}/images/${person.avatar}`,
             sameAs: social
               .filter((item) => item.link && !item.link.startsWith("mailto:")) // Filter out empty links and email links
@@ -258,45 +259,14 @@ export default function About() {
               </Heading>
 
               {/* trocar por botões com ícones */}
-              <Grid fillWidth gap="l" columns="4">
+              <Grid fillWidth gap="l" columns="3">
               {about.technical.skills.map((skill, index) => (
                 <Grid key={`${skill}-${index}`} fillWidth gap="4">
-                  <Text variant="heading-strong-s">{skill.title}</Text>
-                  <Text variant="body-default-m" onBackground="neutral-weak">
-                    {skill.description}
-                  </Text>
-                  {skill.images && skill.images.length > 0 && (
-                    <Grid
-                      fillWidth
-                      paddingTop="m"
-                      gap="12"
-                      columns="3"
-                      style={{ gridTemplateRows: "repeat(4, auto)" }} // 4 linhas automáticas
-                    >
-                      {skill.images.map((image, index) => (
-                        <Grid
-                          key={index}
-                          border="neutral-medium"
-                          radius="m"
-                          //@ts-ignore
-                          minWidth={image.width}
-                          //@ts-ignore
-                          height={image.height}
-                        >
-                          <SmartImage
-                            enlarge
-                            radius="m"
-                            //@ts-ignore
-                            sizes={image.width.toString()}
-                            //@ts-ignore
-                            alt={image.alt}
-                            //@ts-ignore
-                            src={image.src}
-                          />
-                        </Grid>
-                      ))}
-                    </Grid>
-                  )}
+                                <Badge
+                            effect
+                          >
+                            {skill.title}
+                          </Badge>
                 </Grid>
               ))}
               </Grid>

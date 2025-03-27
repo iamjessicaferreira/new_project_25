@@ -79,7 +79,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               
                 <Button
                 variant="primary"
-                onClick={ () => window.open(`{${link}}`)}
+                onClick={() => window.open(link, "_blank")}
                 >
                   <Text paddingRight="4" variant="body-default-s">Preview online</Text>
                   <VscLinkExternal /> 
@@ -88,7 +88,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               {code && (
                 <Button
                   variant="secondary"
-                  onClick={ () => window.open(`{${code}}`)}
+                  onClick={() => window.open(code, "_blank")}
               >
                 <Text variant="body-default-s">Code</Text>
               </Button>

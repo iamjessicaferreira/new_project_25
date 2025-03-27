@@ -10,6 +10,9 @@ const nextConfig = {
 	pageExtensions: ["ts", "tsx", "md", "mdx"],
 	trailingSlash: true,
 	output: "export",
+	images: {
+		unoptimized: true,
+	},
 };
 
 export default withMDX(nextConfig);
