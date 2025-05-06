@@ -36,7 +36,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   link,
   code
 }) => {
-  console.log(code)
   return (
     <Column
       fillWidth gap="m"
