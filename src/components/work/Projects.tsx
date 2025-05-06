@@ -18,8 +18,6 @@ export function Projects({ range }: ProjectsProps) {
     : sortedProjects;
 
   
-  console.log(displayedProjects)
-  
   return (
     <Grid
       fillWidth

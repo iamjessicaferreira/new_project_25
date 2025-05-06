@@ -63,20 +63,21 @@ const home = {
 	subline: (
 		<>
 			I am a multidisciplinary professional with solid experience in software
-			development, team management, and agile. My journey combines technology,
-			management, and creativity, allowing me to bridge the gap between both
-			technical and product teams, ensuring efficiency, innovation, and high
-			performance.
+			development, full-cycle game development, team management and agile. My
+			journey combines technology, management, and creativity, allowing me to
+			bridge the gap between both technical and product teams, ensuring
+			efficiency, innovation, and high performance.
 		</>
 	),
 	skillset_title: <>What I bring to the table?</>,
 	intro_title: <>Why choose me?</>,
 	skills: [
-		{ name: "React", icon: "/images/skills/react.png" },
-		{ name: "Next.js", icon: "/images/skills/nextlogo.png" },
-		{ name: "TypeScript", icon: "/images/skills/ts.png" },
-		{ name: "AWS", icon: "/images/skills/aws.png" },
 		{ name: "JavaScript", icon: "/images/skills/js.png" },
+		{ name: "TypeScript", icon: "/images/skills/ts.png" },
+		{ name: "React", icon: "/images/skills/react.png" },
+		{ name: "Construct", icon: "/images/skills/construct.png" },
+		{ name: "Next.js", icon: "/images/skills/nextlogo.png" },
+		{ name: "AWS", icon: "/images/skills/aws.png" },
 		{ name: "Git/Github/Gitlab", icon: "/images/skills/git.png" },
 		{ name: "HTML5", icon: "/images/skills/html.png" },
 		{ name: "CSS3", icon: "/images/skills/css.svg" },
@@ -98,10 +99,13 @@ const home = {
 		<>
 			{" "}
 			Beyond coding and developing end-to-end applications with technologies
-			like JavaScript, Python, and AWS, I bring strong collaboration and
-			leadership skills to any team. With expertise in effective communication,
-			backlog management, SCRUM practices, and product development, I help
-			optimize workflows, enhance team dynamics, and drive impactful results.
+			like <strong> JavaScript, Python, and AWS,</strong> I bring strong
+			collaboration and leadership skills. With expertise in communication,
+			backlog management, SCRUM practices, and product development, I optimize
+			workflows and drive impactful results. Whether it's{" "}
+			<strong>game mechanics, sound design, or technical development, </strong>{" "}
+			I leverage my full-cycle game development experience to create immersive,
+			high-quality projects and lead teams to success.
 		</>
 	),
 	projects_title: "My projects",
@@ -128,12 +132,14 @@ const about = {
 		description: (
 			<>
 				Fullstack Developer with expertise in JavaScript, Next.js, React.js,
-				TypeScript, Python, Django, AWS, and more. Passionate about building
-				scalable solutions and optimizing development processes. With a solid
-				background in Agile methodologies, SCRUM, project management, and team
-				leadership, in addition to coding, I am also skilled at managing
-				backlogs, facilitating team collaboration, and ensuring the successful
-				delivery of projects.
+				TypeScript, Python, Django, AWS, Construct 3, and more. Passionate about
+				creating impact, whether through software, web apps, or games, and
+				optimizing development processes. With a solid background in game
+				development, including sound design and soundtrack creation for games,
+				as well as Agile methodologies, SCRUM, project management, and team
+				leadership, I excel not only in coding but also in managing backlogs,
+				facilitating team collaboration, and ensuring the successful delivery of
+				projects.
 			</>
 		),
 	},
@@ -257,6 +263,16 @@ const about = {
 		title: "Technical skills",
 		skills: [
 			{
+				title: "JavaScript",
+				description: <></>,
+				images: ["/images/skills/js.png"],
+			},
+			{
+				title: "TypeScript",
+				description: <></>,
+				images: ["/images/skills/ts.png"],
+			},
+			{
 				title: "React",
 				description: <></>,
 				images: ["/images/skills/react.png"],
@@ -266,21 +282,18 @@ const about = {
 				description: <></>,
 				images: ["/images/skills/nextlogo.png"],
 			},
-			{
-				title: "TypeScript",
-				description: <></>,
-				images: ["/images/skills/ts.png"],
-			},
+
 			{
 				title: "AWS",
 				description: <></>,
 				images: ["/images/skills/aws.png"],
 			},
 			{
-				title: "JavaScript",
+				title: "Construct 3",
 				description: <></>,
-				images: ["/images/skills/js.png"],
+				images: ["/images/skills/construct.png"],
 			},
+
 			{
 				title: "Git/Github/Gitlab",
 				description: <></>,
@@ -381,6 +394,14 @@ const work = {
 	// All projects will be listed on the /home and /work routes
 };
 
+const games = {
+	label: "Games",
+	title: "My games",
+	description: `Games developed by ${person.name}`,
+	// Create new project pages by adding a new .mdx file to app/blog/posts
+	// All projects will be listed on the /home and /work routes
+};
+
 const gallery = {
 	label: "Gallery",
 	title: "My photo gallery",
@@ -460,4 +481,4 @@ const gallery = {
 	],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { person, social, newsletter, home, about, blog, work, gallery, games };
