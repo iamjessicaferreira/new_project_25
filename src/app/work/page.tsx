@@ -1,5 +1,5 @@
 import { getPosts } from "@/app/utils/utils";
-import { Column } from "@/once-ui/components";
+import { Column, GlitchFx, Heading } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
 import { baseURL } from "@/app/resources";
 import { person, work } from "@/app/resources/content";
@@ -64,9 +64,15 @@ export default function Work() {
           }),
         }}
       />
-      <h1> oi</h1>
-      <Projects />
+        <Heading padding="l" as="h2" variant="display-strong-xs" wrap="balance">
+              Games
+          </Heading>
       <Games />
+   
+        <Heading   padding="l"  as="h2" variant="display-strong-xs" wrap="balance">
+              Web projects
+          </Heading>
+                  <Projects />
     </Column>
   );
 }
