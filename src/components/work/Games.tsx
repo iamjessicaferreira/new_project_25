@@ -1,5 +1,5 @@
 import { getPosts } from "@/app/utils/utils";
-import { Badge, Text, Card, Column, Grid, Line, Row, SmartImage, Button, IconButton } from "@/once-ui/components";
+import { Grid } from "@/once-ui/components";
 import { ProjectCard } from "@/components";
 
 interface ProjectsProps {
@@ -7,32 +7,27 @@ interface ProjectsProps {
 }
 
 export function Games({ range }: ProjectsProps) {
+  const games = getPosts(["src", "app", "work", "projects"]).filter((project) => {
+    return project.metadata.game;
+  });
 
-  let games = getPosts(["src", "app", "work", "projects"]).filter(
-    (project) => {
-      return project.metadata.game;
-    }
-  );
-  
-    const sortedGames = games.sort((a, b) => {
-      return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
-    });
-  
-    const displayedGames = range
-      ? sortedGames.slice(range[0] - 1, range[1] ?? sortedGames.length)
-      : sortedGames;
-  
+  const sortedGames = games.sort((a, b) => {
+    return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
+  });
 
-  
+  const displayedGames = range
+    ? sortedGames.slice(range[0] - 1, range[1] ?? sortedGames.length)
+    : sortedGames;
+
   return (
     <Grid
       fillWidth
       gap="xl"
       marginBottom="40"
       paddingX="l"
-      columns="2"  
-      tabletColumns="2"  
-      mobileColumns="1"  
+      columns="2"
+      tabletColumns="2"
+      mobileColumns="1"
     >
       {displayedGames.map((post, index) => (
         <ProjectCard
@@ -45,7 +40,8 @@ export function Games({ range }: ProjectsProps) {
           content={post.content}
           avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
           link={post.metadata.link || ""}
-          code={post.metadata.code} />
+          code={post.metadata.code}
+        />
       ))}
     </Grid>
   );

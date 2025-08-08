@@ -1,7 +1,6 @@
 import {
   Avatar,
   Badge,
-  Button,
   Column,
   Flex,
   Grid,
@@ -260,39 +259,40 @@ export default function About() {
 
               {/* trocar por botões com ícones */}
               <Grid fillWidth gap="l" columns="3">
-              {about.technical.skills.map((skill, index) => (
-                <Grid key={`${skill}-${index}`} fillWidth gap="4">
-                                <Badge
-                            effect
-                          >
-                            {skill.title}
-                          </Badge>
-                </Grid>
-              ))}
+                {about.technical.skills.map((skill, index) => (
+                  <Grid key={`${skill}-${index}`} fillWidth gap="4">
+                    <Badge effect>{skill.title}</Badge>
+                  </Grid>
+                ))}
               </Grid>
             </>
           )}
 
           {about.studies.display && (
-                      <>
-                        <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m" marginTop="l">
-                          {about.studies.title}
-                        </Heading>
-                        <Column fillWidth gap="l" marginBottom="40">
-                          {about.studies.institutions.map((institution, index) => (
-                            <Column key={`${institution.name}-${index}`} fillWidth gap="4">
-                              <Text id={institution.name} variant="heading-strong-l">
-                                {institution.name}
-                              </Text>
-                              <Text variant="heading-default-xs" onBackground="neutral-weak">
-                                {institution.description}
-                              </Text>
-                            </Column>
-                          ))}
-                        </Column>
-                      </>
+            <>
+              <Heading
+                as="h2"
+                id={about.studies.title}
+                variant="display-strong-s"
+                marginBottom="m"
+                marginTop="l"
+              >
+                {about.studies.title}
+              </Heading>
+              <Column fillWidth gap="l" marginBottom="40">
+                {about.studies.institutions.map((institution, index) => (
+                  <Column key={`${institution.name}-${index}`} fillWidth gap="4">
+                    <Text id={institution.name} variant="heading-strong-l">
+                      {institution.name}
+                    </Text>
+                    <Text variant="heading-default-xs" onBackground="neutral-weak">
+                      {institution.description}
+                    </Text>
+                  </Column>
+                ))}
+              </Column>
+            </>
           )}
-
         </Column>
       </Flex>
     </Column>

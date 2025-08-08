@@ -189,7 +189,7 @@ const Grid = forwardRef<HTMLDivElement, ComponentProps>(
       (border || borderTop || borderRight || borderBottom || borderLeft) &&
         !borderStyle &&
         "border-solid",
-      border && !borderWidth && `border-1`,
+      border && !borderWidth && "border-1",
       (borderTop || borderRight || borderBottom || borderLeft) && "border-reset",
       borderTop && "border-top-1",
       borderRight && "border-right-1",

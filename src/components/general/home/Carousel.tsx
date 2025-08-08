@@ -42,15 +42,15 @@ const EmblaContainer = styled.section`
   margin: auto;
   --slide-height: 5rem;
   --slide-spacing: 0.5rem;
-  --slide-size: 9.5%; 
+  --slide-size: 9.5%;
 
   @media (max-width: 1200px) {
-    --slide-size: 20%; 
+    --slide-size: 20%;
   }
 
   @media (max-width: 768px) {
     --slide-size: 50%;
-    --slide-spacing: 1rem; 
+    --slide-spacing: 1rem;
     padding: 20px;
   }
 
@@ -86,6 +86,6 @@ const EmblaSlideImage = styled.img`
   height: var(--slide-height);
   user-select: none;
   padding: 3px;
-  width: 100%; 
-  object-fit: contain; 
+  width: 100%;
+  object-fit: contain;
 `;

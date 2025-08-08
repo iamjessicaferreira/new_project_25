@@ -1,5 +1,5 @@
 import { getPosts } from "@/app/utils/utils";
-import { Column, GlitchFx, Heading } from "@/once-ui/components";
+import { Column, Heading } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
 import { baseURL } from "@/app/resources";
 import { person, work } from "@/app/resources/content";
@@ -35,7 +35,7 @@ export async function generateMetadata() {
 }
 
 export default function Work() {
-  let allProjects = getPosts(["src", "app", "work", "projects"]);
+  const allProjects = getPosts(["src", "app", "work", "projects"]);
 
   return (
     <Column maxWidth="m">
@@ -63,16 +63,15 @@ export default function Work() {
             })),
           }),
         }}
-      />
-        <Heading padding="l" as="h2" variant="display-strong-xs" wrap="balance">
-              Games
-          </Heading>
+      />{" "}
+      <Heading padding="l" as="h2" variant="display-strong-xs" wrap="balance">
+        Web projects
+      </Heading>
+      <Projects />
+      <Heading padding="l" as="h2" variant="display-strong-xs" wrap="balance">
+        Games
+      </Heading>
       <Games />
-   
-        <Heading   padding="l"  as="h2" variant="display-strong-xs" wrap="balance">
-              Web projects
-          </Heading>
-                  <Projects />
     </Column>
   );
 }

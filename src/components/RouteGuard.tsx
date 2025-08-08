@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { routes, protectedRoutes } from "@/app/resources";
-import { Flex, Spinner, Input, Button, Heading, Column, PasswordInput } from "@/once-ui/components";
+import { Flex, Spinner, Button, Heading, Column, PasswordInput } from "@/once-ui/components";
 import NotFound from "@/app/not-found";
 
 interface RouteGuardProps {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
@@ -18,6 +18,28 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(true);
+
+  // Client-side authentication check
+  const checkAuthStatus = () => {
+    if (typeof window !== "undefined") {
+      const authToken = localStorage.getItem("authToken");
+      const authExpiry = localStorage.getItem("authExpiry");
+
+      if (authToken && authExpiry) {
+        const now = new Date().getTime();
+        const expiry = parseInt(authExpiry);
+
+        if (now < expiry) {
+          return true;
+        } else {
+          // Clear expired tokens
+          localStorage.removeItem("authToken");
+          localStorage.removeItem("authExpiry");
+        }
+      }
+    }
+    return false;
+  };
 
   useEffect(() => {
     const performChecks = async () => {
@@ -48,11 +70,7 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
 
       if (protectedRoutes[pathname as keyof typeof protectedRoutes]) {
         setIsPasswordRequired(true);
-
-        const response = await fetch("/api/check-auth");
-        if (response.ok) {
-          setIsAuthenticated(true);
-        }
+        setIsAuthenticated(checkAuthStatus());
       }
 
       setLoading(false);
@@ -62,13 +80,15 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
   }, [pathname]);
 
   const handlePasswordSubmit = async () => {
-    const response = await fetch("/api/authenticate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
-    });
+    // Client-side password validation
+    const correctPassword = process.env.NEXT_PUBLIC_PAGE_ACCESS_PASSWORD;
 
-    if (response.ok) {
+    if (password === correctPassword) {
+      // Set authentication token in localStorage
+      const expiry = new Date().getTime() + 60 * 60 * 1000; // 1 hour
+      localStorage.setItem("authToken", "authenticated");
+      localStorage.setItem("authExpiry", expiry.toString());
+
       setIsAuthenticated(true);
       setError(undefined);
     } else {
@@ -85,8 +105,8 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
   }
 
   if (!isRouteEnabled) {
-		return <NotFound />;
-	}
+    return <NotFound />;
+  }
 
   if (isPasswordRequired && !isAuthenticated) {
     return (

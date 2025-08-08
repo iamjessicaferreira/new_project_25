@@ -1,17 +1,6 @@
 "use client";
 
-import {
-  AvatarGroup,
-  Button,
-  Carousel,
-  Column,
-  Flex,
-  Heading,
-  Icon,
-  Line,
-  SmartLink,
-  Text,
-} from "@/once-ui/components";
+import { Button, Carousel, Column, Flex, Heading, Line, Text } from "@/once-ui/components";
 import { VscLinkExternal } from "react-icons/vsc";
 
 interface ProjectCardProps {
@@ -27,21 +16,15 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
-  href,
   images = [],
   title,
   content,
   description,
-  avatars,
   link,
-  code
+  code,
 }) => {
   return (
-    <Column
-      fillWidth gap="m"
-      border="neutral-medium"
-      radius={'s-4'}
-    >
+    <Column fillWidth gap="m" border="neutral-medium" radius={"s-4"}>
       <Carousel
         sizes="(max-width: 960px) 100vw, 960px"
         images={images.map((image) => ({
@@ -67,30 +50,25 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         )}
         {(description?.trim() || content?.trim()) && (
           <Column flex={7} gap="16">
-              {description?.trim() && (
+            {description?.trim() && (
               <Text wrap="balance" variant="body-default-s" onBackground="neutral-weak">
                 {description}
               </Text>
             )}
 
-  <Line background="neutral-alpha-medium" />
+            <Line background="neutral-alpha-medium" />
             <Flex gap="24" wrap horizontal="space-between">
-              
-                <Button
-                variant="primary"
-                onClick={() => window.open(link, "_blank")}
-                >
-                  <Text paddingRight="4" variant="body-default-s">Preview online</Text>
-                  <VscLinkExternal /> 
+              <Button variant="primary" onClick={() => window.open(link, "_blank")}>
+                <Text paddingRight="4" variant="body-default-s">
+                  Preview online
+                </Text>
+                <VscLinkExternal />
               </Button>
-               
+
               {code && (
-                <Button
-                  variant="secondary"
-                  onClick={() => window.open(code, "_blank")}
-              >
-                <Text variant="body-default-s">Code</Text>
-              </Button>
+                <Button variant="secondary" onClick={() => window.open(code, "_blank")}>
+                  <Text variant="body-default-s">Code</Text>
+                </Button>
               )}
             </Flex>
           </Column>

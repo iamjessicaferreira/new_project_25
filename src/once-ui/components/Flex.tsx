@@ -147,7 +147,7 @@ const Flex = forwardRef<HTMLDivElement, ComponentProps>(
       if (!value) return undefined;
 
       if (value === "transparent") {
-        return `transparent-border`;
+        return "transparent-border";
       }
 
       if (["surface", "page", "overlay"].includes(value)) {

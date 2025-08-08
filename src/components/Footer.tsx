@@ -1,4 +1,4 @@
-import { Flex, IconButton, SmartLink, Text } from "@/once-ui/components";
+import { Flex, IconButton, Text } from "@/once-ui/components";
 import { person, social } from "@/app/resources/content";
 import styles from "./Footer.module.scss";
 
@@ -26,7 +26,6 @@ export const Footer = () => {
         <Text variant="body-default-s" onBackground="neutral-strong">
           <Text onBackground="neutral-weak">© {currentYear} /</Text>
           <Text paddingX="4">{person.name}</Text>
-
         </Text>
         <Flex gap="16">
           {social.map(
