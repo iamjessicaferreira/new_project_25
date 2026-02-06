@@ -1,7 +1,12 @@
 .hover {
-  transition: var(--transition-micro-medium);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+  border-radius: var(--radius-m);
+  padding: var(--static-space-8);
 
   &:hover {
     transform: translateX(var(--static-space-8));
+    background: var(--neutral-alpha-weak);
   }
 }

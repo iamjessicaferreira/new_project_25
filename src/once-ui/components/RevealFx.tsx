@@ -32,20 +32,32 @@ const RevealFx = forwardRef<HTMLDivElement, RevealFxProps>(
     ref,
   ) => {
     const [isRevealed, setIsRevealed] = useState(revealedByDefault);
+    const [isAnimationComplete, setIsAnimationComplete] = useState(revealedByDefault);
 
     useEffect(() => {
+      if (trigger !== undefined) return;
       const timer = setTimeout(() => {
         setIsRevealed(true);
       }, delay * 1000);
 
       return () => clearTimeout(timer);
-    }, [delay]);
+    }, [delay, trigger]);
 
     useEffect(() => {
       if (trigger !== undefined) {
         setIsRevealed(trigger);
       }
     }, [trigger]);
+
+    useEffect(() => {
+      if (isRevealed && !isAnimationComplete) {
+        const durationMs = speed === "fast" ? 1000 : speed === "medium" ? 2000 : 3000;
+        const timer = setTimeout(() => {
+          setIsAnimationComplete(true);
+        }, durationMs);
+        return () => clearTimeout(timer);
+      }
+    }, [isRevealed, isAnimationComplete, speed]);
 
     const getSpeedDuration = () => {
       switch (speed) {
@@ -84,7 +96,7 @@ const RevealFx = forwardRef<HTMLDivElement, RevealFxProps>(
         horizontal="center"
         ref={ref}
         style={revealStyle}
-        className={`${styles.revealFx} ${isRevealed ? styles.revealed : styles.hidden} ${className || ""}`}
+        className={`${styles.revealFx} ${isRevealed ? styles.revealed : styles.hidden} ${isAnimationComplete ? styles.animationComplete : ""} ${className || ""}`}
         {...rest}
       >
         {children}

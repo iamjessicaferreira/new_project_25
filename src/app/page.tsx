@@ -17,9 +17,11 @@ import { Projects } from "@/components/work/Projects";
 
 import { baseURL, routes } from "@/app/resources";
 import { home, about, person, newsletter } from "@/app/resources/content";
+import { generatePageMetadata } from "@/app/utils/utils";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import SocialButtons from "@/components/general/social/social";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import "./utils/page.css";
 
 import EmblaCarousel from "@/components/general/home/Carousel";
@@ -28,32 +30,7 @@ import type { EmblaOptionsType } from "embla-carousel";
 const OPTIONS: EmblaOptionsType = { dragFree: true, direction: "rtl", loop: true };
 
 export async function generateMetadata() {
-  const title = home.title;
-  const description = home.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: `https://${baseURL}`,
-      images: [
-        {
-          url: ogImage,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
+  return generatePageMetadata(home.title, home.description, baseURL, `https://${baseURL}`);
 }
 
 export default function Home() {
@@ -146,59 +123,55 @@ export default function Home() {
         </Flex>
       </Row>
 
-      <RevealFx translateY="16" delay={0.6}>
+      <ScrollReveal translateY={16} speed="medium">
         <div>
           <Heading as="h2" variant="display-strong-xs" wrap="balance" align="center">
             {home.skillset_title}
           </Heading>
           <EmblaCarousel options={OPTIONS} />
         </div>
-      </RevealFx>
+      </ScrollReveal>
 
-      <RevealFx translateY="16" delay={0.6} gap="xl" paddingLeft="l">
+      <ScrollReveal translateY={16} speed="medium" gap="xl" paddingLeft="l">
         <GlitchFx fillWidth speed="medium">
           <Heading as="h2" variant="display-strong-xs" wrap="balance">
             {home.intro_title}
           </Heading>
         </GlitchFx>
-        <Text
-          wrap="balance"
-          onBackground="neutral-weak"
-          align="right"
-          variant="heading-default-xl"
-          paddingLeft="l"
-          style={{ width: "350rem" }}
-        >
-          {home.intro_text}
-        </Text>
-      </RevealFx>
+        <Flex fillWidth paddingLeft="l" horizontal="end">
+          <Text onBackground="neutral-weak" align="right" variant="heading-default-l">
+            {home.intro_text}
+          </Text>
+        </Flex>
+      </ScrollReveal>
 
-      <RevealFx translateY="16" delay={0.6} gap="xl" paddingLeft="l" align="center">
+      <ScrollReveal translateY={16} speed="medium" gap="xl" paddingLeft="l" align="center">
         <Column horizontal="center">
           <Heading as="h2" variant="display-strong-xs" wrap="balance" marginBottom="40">
             {home.projects_title}
           </Heading>
           <Projects range={[1, 2]} />
-          <Button href="/work" variant="secondary">
-            {" "}
-            View other projects{" "}
+          <Button href="/work/" variant="secondary">
+            View other projects
           </Button>
         </Column>
-      </RevealFx>
+      </ScrollReveal>
 
       {newsletter.display && <Mailchimp newsletter={newsletter} />}
 
       {routes["/blog"] && (
-        <Flex fillWidth gap="24" mobileDirection="column">
-          <Flex flex={1} paddingLeft="l">
-            <Heading as="h2" variant="display-strong-xs" wrap="balance">
-              Latest from the blog
-            </Heading>
+        <ScrollReveal translateY={16} speed="medium">
+          <Flex fillWidth gap="24" mobileDirection="column">
+            <Flex flex={1} paddingLeft="l">
+              <Heading as="h2" variant="display-strong-xs" wrap="balance">
+                Latest from the blog
+              </Heading>
+            </Flex>
+            <Flex flex={3} paddingX="20">
+              <Posts range={[1, 2]} columns="2" />
+            </Flex>
           </Flex>
-          <Flex flex={3} paddingX="20">
-            <Posts range={[1, 2]} columns="2" />
-          </Flex>
-        </Flex>
+        </ScrollReveal>
       )}
     </Column>
   );

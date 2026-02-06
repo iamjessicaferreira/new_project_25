@@ -1,91 +1,75 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useMemo } from "react";
 import { usePathname } from "next/navigation";
 import { routes, protectedRoutes } from "@/app/resources";
-import { Flex, Spinner, Button, Heading, Column, PasswordInput } from "@/once-ui/components";
+import { Button, Heading, Column, PasswordInput } from "@/once-ui/components";
 import NotFound from "@/app/not-found";
 
 interface RouteGuardProps {
   children: React.ReactNode;
 }
 
-const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
-  const pathname = usePathname();
-  const [isRouteEnabled, setIsRouteEnabled] = useState(false);
-  const [isPasswordRequired, setIsPasswordRequired] = useState(false);
-  const [password, setPassword] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [error, setError] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(true);
+const normalize = (p: string) => (p.length > 1 && p.endsWith("/") ? p.slice(0, -1) : p);
 
-  // Client-side authentication check
-  const checkAuthStatus = () => {
-    if (typeof window !== "undefined") {
-      const authToken = localStorage.getItem("authToken");
-      const authExpiry = localStorage.getItem("authExpiry");
+const checkRouteEnabled = (pathname: string) => {
+  if (!pathname) return false;
 
-      if (authToken && authExpiry) {
-        const now = new Date().getTime();
-        const expiry = parseInt(authExpiry);
+  const norm = normalize(pathname);
 
-        if (now < expiry) {
-          return true;
-        } else {
-          // Clear expired tokens
-          localStorage.removeItem("authToken");
-          localStorage.removeItem("authExpiry");
-        }
-      }
+  if (norm in routes) {
+    return routes[norm as keyof typeof routes];
+  }
+  if (pathname in routes) {
+    return routes[pathname as keyof typeof routes];
+  }
+
+  const dynamicRoutes = ["/blog", "/work"] as const;
+  for (const route of dynamicRoutes) {
+    if (norm.startsWith(route) && routes[route]) {
+      return true;
     }
-    return false;
-  };
+  }
 
-  useEffect(() => {
-    const performChecks = async () => {
-      setLoading(true);
-      setIsRouteEnabled(false);
-      setIsPasswordRequired(false);
-      setIsAuthenticated(false);
+  return false;
+};
 
-      const checkRouteEnabled = () => {
-        if (!pathname) return false;
+const checkAuthStatus = () => {
+  if (typeof window === "undefined") return false;
 
-        if (pathname in routes) {
-          return routes[pathname as keyof typeof routes];
-        }
+  const authToken = localStorage.getItem("authToken");
+  const authExpiry = localStorage.getItem("authExpiry");
 
-        const dynamicRoutes = ["/blog", "/work"] as const;
-        for (const route of dynamicRoutes) {
-          if (pathname?.startsWith(route) && routes[route]) {
-            return true;
-          }
-        }
+  if (authToken && authExpiry) {
+    const now = new Date().getTime();
+    const expiry = parseInt(authExpiry);
 
-        return false;
-      };
+    if (now < expiry) {
+      return true;
+    }
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("authExpiry");
+  }
+  return false;
+};
 
-      const routeEnabled = checkRouteEnabled();
-      setIsRouteEnabled(routeEnabled);
+const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
+  const pathname = usePathname() ?? "";
+  const [password, setPassword] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(() => checkAuthStatus());
+  const [error, setError] = useState<string | undefined>(undefined);
 
-      if (protectedRoutes[pathname as keyof typeof protectedRoutes]) {
-        setIsPasswordRequired(true);
-        setIsAuthenticated(checkAuthStatus());
-      }
+  const isRouteEnabled = useMemo(() => checkRouteEnabled(pathname), [pathname]);
+  const isPasswordRequired = useMemo(
+    () => !!protectedRoutes[pathname as keyof typeof protectedRoutes],
+    [pathname],
+  );
 
-      setLoading(false);
-    };
-
-    performChecks();
-  }, [pathname]);
-
-  const handlePasswordSubmit = async () => {
-    // Client-side password validation
+  const handlePasswordSubmit = () => {
     const correctPassword = process.env.NEXT_PUBLIC_PAGE_ACCESS_PASSWORD;
 
     if (password === correctPassword) {
-      // Set authentication token in localStorage
-      const expiry = new Date().getTime() + 60 * 60 * 1000; // 1 hour
+      const expiry = new Date().getTime() + 60 * 60 * 1000;
       localStorage.setItem("authToken", "authenticated");
       localStorage.setItem("authExpiry", expiry.toString());
 
@@ -95,14 +79,6 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
       setError("Incorrect password");
     }
   };
-
-  if (loading) {
-    return (
-      <Flex fillWidth paddingY="128" horizontal="center">
-        <Spinner />
-      </Flex>
-    );
-  }
 
   if (!isRouteEnabled) {
     return <NotFound />;

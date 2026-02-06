@@ -16,34 +16,10 @@ import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
 import { person, about, social } from "@/app/resources/content";
 import SocialButtons from "@/components/general/social/social";
+import { generatePageMetadata } from "@/app/utils/utils";
 
 export async function generateMetadata() {
-  const title = about.title;
-  const description = about.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: `https://${baseURL}/about/`,
-      images: [
-        {
-          url: ogImage,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
+  return generatePageMetadata(about.title, about.description, baseURL, `https://${baseURL}/about/`);
 }
 
 export default function About() {
@@ -70,7 +46,7 @@ export default function About() {
     },
   ];
   return (
-    <Column maxWidth="m">
+    <Column maxWidth="l">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -123,8 +99,8 @@ export default function About() {
             </Flex>
             {person.languages.length > 0 && (
               <Flex wrap gap="8">
-                {person.languages.map((language, index) => (
-                  <Tag key={index} size="l">
+                {person.languages.map((language) => (
+                  <Tag key={language} size="l">
                     {language}
                   </Tag>
                 ))}
@@ -132,7 +108,7 @@ export default function About() {
             )}
           </Column>
         )}
-        <Column className={styles.blockAlign} flex={9} maxWidth={40}>
+        <Column className={styles.blockAlign} flex={9}>
           <Column
             id={about.intro.title}
             fillWidth
@@ -257,7 +233,6 @@ export default function About() {
                 {about.technical.title}
               </Heading>
 
-              {/* trocar por botões com ícones */}
               <Grid fillWidth gap="l" columns="3">
                 {about.technical.skills.map((skill, index) => (
                   <Grid key={`${skill}-${index}`} fillWidth gap="4">

@@ -1,4 +1,4 @@
-import { getPosts } from "@/app/utils/utils";
+import { getPosts, generatePageMetadata, CONTENT_PATHS } from "@/app/utils/utils";
 import { Column, Heading } from "@/once-ui/components";
 import { Projects } from "@/components/work/Projects";
 import { baseURL } from "@/app/resources";
@@ -6,36 +6,11 @@ import { person, work } from "@/app/resources/content";
 import { Games } from "@/components/work/Games";
 
 export async function generateMetadata() {
-  const title = work.title;
-  const description = work.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: `https://${baseURL}/work/`,
-      images: [
-        {
-          url: ogImage,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
+  return generatePageMetadata(work.title, work.description, baseURL, `https://${baseURL}/work/`);
 }
 
 export default function Work() {
-  const allProjects = getPosts(["src", "app", "work", "projects"]);
+  const allProjects = getPosts([...CONTENT_PATHS.WORK]);
 
   return (
     <Column maxWidth="m">
@@ -48,8 +23,8 @@ export default function Work() {
             "@type": "CollectionPage",
             headline: work.title,
             description: work.description,
-            url: `https://${baseURL}/projects`,
-            image: `${baseURL}/og?title=Design%20Projects`,
+            url: `https://${baseURL}/work/`,
+            image: `${baseURL}/og?title=${encodeURIComponent(work.title)}`,
             author: {
               "@type": "Person",
               name: person.name,
@@ -58,12 +33,12 @@ export default function Work() {
               "@type": "CreativeWork",
               headline: project.metadata.title,
               description: project.metadata.summary,
-              url: `https://${baseURL}/projects/${project.slug}`,
+              url: `https://${baseURL}/work/${project.slug}/`,
               image: `${baseURL}/${project.metadata.image}`,
             })),
           }),
         }}
-      />{" "}
+      />
       <Heading padding="l" as="h2" variant="display-strong-xs" wrap="balance">
         Web projects
       </Heading>

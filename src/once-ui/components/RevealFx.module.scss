@@ -12,4 +12,9 @@
     mask-position: 0 0;
     filter: blur(0);
   }
+
+  &.animationComplete {
+    mask-image: none;
+    mask-size: unset;
+  }
 }

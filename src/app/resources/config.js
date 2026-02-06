@@ -40,7 +40,7 @@ const effects = {
     width: 100,
     height: 100,
     tilt: 0,
-    colorStart: "brand-background-strong",
+    colorStart: "accent-background-strong",
     colorEnd: "static-transparent",
     opacity: 50,
   },

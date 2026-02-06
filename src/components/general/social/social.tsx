@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Button, Flex, IconButton } from "@/once-ui/components";
 import { social } from "@/app/resources/content";
 
@@ -15,11 +16,10 @@ export default function SocialButtons({ compact = false }: SocialButtonsProps) {
           {social.map(
             (item) =>
               item.link && (
-                <>
+                <React.Fragment key={item.name}>
                   {!compact && (
                     <Button
                       className="s-flex-hide"
-                      key={item.name}
                       href={item.link}
                       prefixIcon={item.icon}
                       label={item.name}
@@ -31,14 +31,13 @@ export default function SocialButtons({ compact = false }: SocialButtonsProps) {
                   <IconButton
                     className={compact ? undefined : "s-flex-show"}
                     size="l"
-                    key={`${item.name}-icon`}
                     href={item.link}
                     icon={item.icon}
                     tooltip={item.name}
                     variant="secondary"
                     style={{ cursor: "pointer" }}
                   />
-                </>
+                </React.Fragment>
               ),
           )}
           {!compact && (

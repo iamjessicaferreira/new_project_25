@@ -13,6 +13,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  sassOptions: {
+    silenceDeprecations: ["legacy-js-api"],
+  },
 };
 
 export default withMDX(nextConfig);

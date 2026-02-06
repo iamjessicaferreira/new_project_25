@@ -2,6 +2,7 @@
 
 import { Button, Carousel, Column, Flex, Heading, Line, Text } from "@/once-ui/components";
 import { VscLinkExternal } from "react-icons/vsc";
+import styles from "./ProjectCard.module.scss";
 
 interface CodeLink {
   label: string;
@@ -9,13 +10,10 @@ interface CodeLink {
 }
 
 interface ProjectCardProps {
-  href: string;
-  priority?: boolean;
   images: string[];
   title: string;
   content: string;
   description: string;
-  avatars: { src: string }[];
   link: string;
   code?: string;
   codeLinks?: CodeLink[];
@@ -31,14 +29,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   codeLinks = [],
 }) => {
   return (
-    <Column fillWidth gap="m" border="neutral-medium" radius={"s-4"}>
-      <Carousel
-        sizes="(max-width: 960px) 100vw, 960px"
-        images={images.map((image) => ({
-          src: image,
-          alt: title,
-        }))}
-      />
+    <Column fillWidth gap="m" border="neutral-medium" radius={"s-4"} className={styles.card}>
+      <div className={styles.imageContainer}>
+        <Carousel
+          sizes="(max-width: 960px) 100vw, 960px"
+          images={images.map((image) => ({
+            src: image,
+            alt: title,
+          }))}
+        />
+      </div>
       <Flex
         mobileDirection="column"
         direction="column"

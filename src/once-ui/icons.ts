@@ -24,6 +24,8 @@ import {
   HiOutlineEye,
   HiOutlineEyeSlash,
   HiArrowDownTray,
+  HiSun,
+  HiMoon,
 } from "react-icons/hi2";
 
 import {
@@ -70,4 +72,6 @@ export const iconLibrary: Record<string, IconType> = {
   arrowUpRightFromSquare: HiArrowTopRightOnSquare,
   download: HiArrowDownTray,
   medium: FaMedium,
+  sun: HiSun,
+  moon: HiMoon,
 };

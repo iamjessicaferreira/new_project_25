@@ -1,0 +1,16 @@
+.floatingToggle {
+  position: fixed;
+  bottom: var(--static-space-24);
+  right: var(--static-space-24);
+  z-index: 10;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @media (--s) {
+    bottom: calc(var(--static-space-80) + var(--static-space-24));
+    right: var(--static-space-16);
+  }
+}

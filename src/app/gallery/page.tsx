@@ -2,34 +2,15 @@ import { Flex } from "@/once-ui/components";
 import MasonryGrid from "@/components/gallery/MasonryGrid";
 import { baseURL } from "@/app/resources";
 import { gallery, person } from "@/app/resources/content";
+import { generatePageMetadata } from "@/app/utils/utils";
 
 export async function generateMetadata() {
-  const title = gallery.title;
-  const description = gallery.description;
-  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: `https://${baseURL}/gallery`,
-      images: [
-        {
-          url: ogImage,
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
+  return generatePageMetadata(
+    gallery.title,
+    gallery.description,
+    baseURL,
+    `https://${baseURL}/gallery/`,
+  );
 }
 
 export default function Gallery() {

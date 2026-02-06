@@ -98,7 +98,6 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps | AnchorProps>(
           "text-decoration-none",
           "button",
           "cursor-interactive",
-          className,
         )}
         style={style}
         onMouseEnter={() => setIsHover(true)}

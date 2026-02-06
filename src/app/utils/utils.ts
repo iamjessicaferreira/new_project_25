@@ -14,7 +14,7 @@ type CodeLink = {
   url: string;
 };
 
-type Metadata = {
+export type Metadata = {
   title: string;
   publishedAt: string;
   summary: string;
@@ -79,7 +79,39 @@ function getMDXData(dir: string) {
   });
 }
 
+export const CONTENT_PATHS = {
+  BLOG: ["src", "app", "blog", "posts"],
+  WORK: ["src", "app", "work", "projects"],
+} as const;
+
 export function getPosts(customPath = ["", "", "", ""]) {
   const postsDir = path.join(process.cwd(), ...customPath);
   return getMDXData(postsDir);
+}
+
+export function generatePageMetadata(
+  title: string,
+  description: string,
+  baseURL: string,
+  pageUrl: string,
+) {
+  const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "website" as const,
+      url: pageUrl,
+      images: [{ url: ogImage, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
 }

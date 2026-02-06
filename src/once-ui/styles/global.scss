@@ -3,6 +3,11 @@
   box-sizing: border-box;
 }
 
+/* SMOOTH SCROLL */
+html {
+  scroll-behavior: smooth;
+}
+
 ul {
   margin: 0;
   padding: 0 0 0 var(--static-space-12);

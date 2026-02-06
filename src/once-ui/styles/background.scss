@@ -10,6 +10,10 @@
 .surface-background {
   background-color: var(--surface-background);
   backdrop-filter: var(--backdrop-filter);
+
+  [data-theme="light"] & {
+    box-shadow: var(--shadow-s);
+  }
 }
 
 .overlay-background {

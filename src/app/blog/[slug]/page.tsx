@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
-import { getPosts } from "@/app/utils/utils";
+import { getPosts, CONTENT_PATHS } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Heading, Row, Text } from "@/once-ui/components";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
@@ -14,14 +14,14 @@ interface BlogParams {
 }
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const posts = getPosts(["src", "app", "blog", "posts"]);
+  const posts = getPosts([...CONTENT_PATHS.BLOG]);
   return posts.map((post) => ({
     slug: post.slug,
   }));
 }
 
 export function generateMetadata({ params: { slug } }: BlogParams) {
-  const post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === slug);
+  const post = getPosts([...CONTENT_PATHS.BLOG]).find((p) => p.slug === slug);
 
   if (!post) {
     return;
@@ -55,15 +55,15 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
 }
 
 export default function Blog({ params }: BlogParams) {
-  const post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === params.slug);
+  const post = getPosts([...CONTENT_PATHS.BLOG]).find((p) => p.slug === params.slug);
 
   if (!post) {
     notFound();
   }
 
   const avatars =
-    post.metadata.team?.map((person) => ({
-      src: person.avatar,
+    post.metadata.team?.map((member) => ({
+      src: member.avatar,
     })) || [];
 
   return (
@@ -90,7 +90,7 @@ export default function Blog({ params }: BlogParams) {
           }),
         }}
       />
-      <Button href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">
+      <Button href="/blog/" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">
         Posts
       </Button>
       <Heading variant="display-strong-s">{post.metadata.title}</Heading>

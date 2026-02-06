@@ -1,4 +1,4 @@
-import { getPosts } from "@/app/utils/utils";
+import { getPosts, CONTENT_PATHS } from "@/app/utils/utils";
 import { Grid } from "@/once-ui/components";
 import { ProjectCard } from "@/components";
 
@@ -7,7 +7,7 @@ interface ProjectsProps {
 }
 
 export function Projects({ range }: ProjectsProps) {
-  const projects = getPosts(["src", "app", "work", "projects"]).filter((project) => {
+  const projects = getPosts([...CONTENT_PATHS.WORK]).filter((project) => {
     return !project.metadata.game && project.metadata.visible;
   });
   const sortedProjects = projects.sort((a, b) => {
@@ -28,16 +28,13 @@ export function Projects({ range }: ProjectsProps) {
       tabletColumns="2"
       mobileColumns="1"
     >
-      {displayedProjects.map((post, index) => (
+      {displayedProjects.map((post) => (
         <ProjectCard
-          priority={index < 2}
           key={post.slug}
-          href={`/work/${post.slug}`}
           images={post.metadata.images}
           title={post.metadata.title}
           description={post.metadata.summary}
           content={post.content}
-          avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
           link={post.metadata.link || ""}
           code={post.metadata.code}
           codeLinks={post.metadata.codeLinks}
