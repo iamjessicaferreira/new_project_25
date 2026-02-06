@@ -102,10 +102,10 @@ export default async function RootLayout({ children }: RootLayoutProps) {
               dangerouslySetInnerHTML={{
                 __html: [
                   "(function(){try{",
-                  'var t=localStorage.getItem("theme");',
-                  'if(t==="light"||t==="dark"){',
+                  "var t=localStorage.getItem('theme');",
+                  "if(t==='light'||t==='dark'){",
                   "document.documentElement",
-                  '.setAttribute("data-theme",t)}',
+                  ".setAttribute('data-theme',t)}",
                   "}catch(e){}})()",
                 ].join(""),
               }}
