@@ -50,6 +50,9 @@
     "sharp": "^0.33.4",
     "styled-components": "^6.1.16"
   },
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "devDependencies": {
     "@biomejs/biome": "^2.1.4",
     "@csstools/postcss-global-data": "^2.1.1",
