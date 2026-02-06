@@ -82,7 +82,7 @@ export default function Home() {
         }}
       />
       <Row fillWidth paddingY="l" gap="m">
-        <Column maxWidth="m">
+        <Column flex={3}>
           <RevealFx translateY="4" fillWidth horizontal="start" paddingBottom="xs">
             <Heading wrap="balance" variant="display-strong-l">
               {home.headline}
@@ -119,13 +119,14 @@ export default function Home() {
                 {about.title}
               </Flex>
             </Button>
-            <SocialButtons />
+            <SocialButtons compact />
           </RevealFx>
         </Column>
 
         <Flex
           mobileDirection="column"
           direction="row"
+          flex={2}
           fillWidth
           paddingX="s"
           paddingTop="0"
@@ -133,7 +134,7 @@ export default function Home() {
           gap="m"
           className="smart-image-mine"
         >
-          <TiltFx maxWidth={24} aspectRatio={0} radius="l">
+          <TiltFx fillWidth radius="l">
             <SmartImage
               enlarge
               radius="m"

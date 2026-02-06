@@ -8,7 +8,7 @@ interface ProjectsProps {
 
 export function Projects({ range }: ProjectsProps) {
   const projects = getPosts(["src", "app", "work", "projects"]).filter((project) => {
-    return !project.metadata.game;
+    return !project.metadata.game && project.metadata.visible;
   });
   const sortedProjects = projects.sort((a, b) => {
     return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
@@ -40,6 +40,7 @@ export function Projects({ range }: ProjectsProps) {
           avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
           link={post.metadata.link || ""}
           code={post.metadata.code}
+          codeLinks={post.metadata.codeLinks}
         />
       ))}
     </Grid>

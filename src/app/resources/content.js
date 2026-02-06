@@ -4,7 +4,7 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Fullstack Software Engineer",
+  role: "AI Software Engineer",
   avatar: "/images/avatar.jpeg",
   location: "Pernambuco - Brazil",
   languages: ["English", "Portuguese", "French"], // optional: Leave the array empty if you don't want to display languages
@@ -33,6 +33,11 @@ const social = [
     link: "https://www.linkedin.com/in/j%C3%A9ssica-ferreira-soueu/",
   },
   {
+    name: "Medium",
+    icon: "medium",
+    link: "https://medium.com/@devjessica.f",
+  },
+  {
     name: "Email",
     icon: "email",
     link: "mailto:devjessica.f@gmail.com",
@@ -45,22 +50,19 @@ const home = {
   description: `Portfolio website showcasing my work as a ${person.role}`,
   headline: <>Jéssica Ferreira</>,
   second_headline: (
-    <>
-      {" "}
-      Software Engineer | Agile | Project and Product Management | Technical & Creative
-      Communication | Games & Technology
-    </>
+    <> AI Software Engineer | Fullstack (React, Next.js, Node.js, Python) | AI-Powered Products</>
   ),
   subline: (
     <>
-      I am a multidisciplinary professional with solid experience in software development,
-      full-cycle game development, team management and agile. My journey combines technology,
-      management, and creativity, allowing me to bridge the gap between both technical and product
-      teams, ensuring efficiency, innovation, and high performance.
+      Software Engineer focused on AI-powered products and end-to-end fullstack development. I
+      combine technical execution, user-focused design, and autonomous ownership across the full
+      application lifecycle: from concept and architecture to infrastructure, deployment, and
+      iteration. I use AI as a core part of my workflow to build, ship, and scale production-ready
+      web platforms.
     </>
   ),
   skillset_title: <>What I bring to the table?</>,
-  intro_title: <>Why choose me?</>,
+  intro_title: <>Why work with me?</>,
   skills: [
     { name: "JavaScript", icon: "/images/skills/js.png" },
     { name: "TypeScript", icon: "/images/skills/ts.png" },
@@ -88,13 +90,13 @@ const home = {
   intro_text: (
     <>
       {" "}
-      Beyond coding and developing end-to-end applications with technologies like{" "}
-      <strong> JavaScript, Python, and AWS,</strong> I bring strong collaboration and leadership
-      skills. With expertise in communication, backlog management, SCRUM practices, and product
-      development, I optimize workflows and drive impactful results. Whether it&apos;s{" "}
-      <strong>game mechanics, sound design, or technical development, </strong> I leverage my
-      full-cycle game development experience to create immersive, high-quality projects and lead
-      teams to success.
+      I&apos;m a highly autonomous fullstack developer with a{" "}
+      <strong>strong product mindset.</strong> I own technical decisions end-to-end: architecture,
+      stack choices, infrastructure, deployments, CI/CD, and code quality. I use{" "}
+      <strong>AI and LLMs daily</strong> to accelerate architecture design, implementation,
+      refactoring, reviews, and audits. Along with that, my game development background shaped how I
+      think about <strong>systems, interaction, and user experience</strong>, and I bring that
+      mindset into everything I build.
     </>
   ),
   projects_title: "My projects",
@@ -120,13 +122,17 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Fullstack Developer with expertise in JavaScript, Next.js, React.js, TypeScript, Python,
-        Django, AWS, Construct 3, and more. Passionate about creating impact, whether through
-        software, web apps, or games, and optimizing development processes. With a solid background
-        in game development, including sound design and soundtrack creation for games, as well as
-        Agile methodologies, SCRUM, project management, and team leadership, I excel not only in
-        coding but also in managing backlogs, facilitating team collaboration, and ensuring the
-        successful delivery of projects.
+        I&apos;m a curious, proactive, and self-directed developer that cares deeply about how
+        people experience the things we build. My path into software started with game jams and
+        experimental projects, where I learned to think in systems, feedback loops, and user
+        behavior before anything else. That foundation shaped how I approach every product I work on
+        today: interaction, clarity, and respect for the user&apos;s pace always come first.
+        <br />
+        <br />I work across the full stack with JavaScript, Node.js, Python, and modern web
+        architectures, using AI tools throughout my workflow, from architecture design and
+        implementation to code reviews and audits. I thrive in early-stage environments where I can
+        take an idea from Lean Discovery and MVP definition all the way to a production-ready
+        system, owning every technical decision along the way.
       </>
     ),
   },
@@ -135,18 +141,51 @@ const about = {
     title: "Work Experience",
     experiences: [
       {
+        company: "Vestov",
+        timeframe: "Since 2025",
+        role: "AI Software Engineer - Full-time",
+        achievements: [
+          <>
+            Fullstack software developer with end-to-end technical ownership, responsible for
+            architecture decisions, stack selection, infrastructure, deployments, CI/CD, and overall
+            code quality.
+          </>,
+          <>
+            Built, reviewed, and audited production-ready fullstack applications using React,
+            Next.js, and modern web architectures, with a strong focus on scalability and
+            maintainability.
+          </>,
+          <>
+            Operated with high technical autonomy, making all engineering decisions independently
+            while collaborating with a Product Manager on product direction.
+          </>,
+          <>
+            Led end-to-end product development, from Lean Discovery and MVP definition to fullstack
+            implementation and deployment.
+          </>,
+          <>
+            Authored key product artifacts such as Product Vision Documents and MVP Roadmaps to
+            guide scope and stakeholder alignment.
+          </>,
+          <>
+            Integrated AI-powered features and established AI-assisted development workflows using
+            LLM APIs and structured prompting.
+          </>,
+        ],
+        images: [],
+      },
+      {
         company: "CESAR",
-        timeframe: "Since 2024",
+        timeframe: "2024 - 2025",
         role: "Software Engineer - Full-time",
         achievements: [
           <>
-            At CESAR, I am working on the development of a virtual assistant with Generative
-            Artificial Intelligence (AI Gen) to support companies in implementing ESG practices.
-            Additionally, we are building a web platform for the greenhouse gas inventory module,
-            focusing on automating data collection and calculations to increase efficiency for
-            client companies. My responsibilities include leading agile ceremonies, organizing the
-            backlog, writing user stories, and handling end-to-end implementation of features and
-            automated calculations.{" "}
+            At CESAR, I worked on the development of a virtual assistant with Generative Artificial
+            Intelligence (AI Gen) to support companies in implementing ESG practices. Additionally,
+            we built a web platform for the greenhouse gas inventory module, focusing on automating
+            data collection and calculations to increase efficiency for client companies. My
+            responsibilities included leading agile ceremonies, organizing the backlog, writing user
+            stories, and handling end-to-end implementation of features and automated calculations.
           </>,
           <>Developing software with Python, React, and PostgreSQL.</>,
           <>Reviewing processes and integrating technical and product teams.</>,

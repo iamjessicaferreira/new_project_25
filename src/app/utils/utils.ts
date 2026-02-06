@@ -9,6 +9,11 @@ type Team = {
   linkedIn: string;
 };
 
+type CodeLink = {
+  label: string;
+  url: string;
+};
+
 type Metadata = {
   title: string;
   publishedAt: string;
@@ -19,7 +24,9 @@ type Metadata = {
   team: Team[];
   link?: string;
   code?: string | undefined;
+  codeLinks?: CodeLink[];
   game: boolean;
+  visible: boolean;
 };
 
 import { notFound } from "next/navigation";
@@ -50,7 +57,9 @@ function readMDXFile(filePath: string) {
     team: data.team || [],
     link: data.link || "",
     code: data.code || "",
+    codeLinks: data.codeLinks || [],
     game: data.game || false,
+    visible: data.visible !== false,
   };
 
   return { metadata, content };
