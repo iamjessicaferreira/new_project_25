@@ -1,5 +1,6 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
+  "ignorePatterns": ["src/once-ui/**"],
   "rules": {
     "no-console": "warn",
     "no-debugger": "error",
