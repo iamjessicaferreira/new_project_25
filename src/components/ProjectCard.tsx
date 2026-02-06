@@ -74,21 +74,21 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 </Button>
               )}
 
-              {codeLinks.length > 0
-                ? codeLinks.map((cl) => (
-                    <Button
-                      key={cl.url}
-                      variant="secondary"
-                      onClick={() => window.open(cl.url, "_blank")}
-                    >
-                      <Text variant="body-default-s">{cl.label}</Text>
-                    </Button>
-                  ))
-                : code && (
-                    <Button variant="secondary" onClick={() => window.open(code, "_blank")}>
-                      <Text variant="body-default-s">Code</Text>
-                    </Button>
-                  )}
+              {codeLinks.length > 0 &&
+                codeLinks.map((cl) => (
+                  <Button
+                    key={cl.url}
+                    variant="secondary"
+                    onClick={() => window.open(cl.url, "_blank")}
+                  >
+                    <Text variant="body-default-s">{cl.label}</Text>
+                  </Button>
+                ))}
+              {codeLinks.length === 0 && code && (
+                <Button variant="secondary" onClick={() => window.open(code, "_blank")}>
+                  <Text variant="body-default-s">Code</Text>
+                </Button>
+              )}
             </Flex>
           </Column>
         )}
