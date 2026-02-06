@@ -30,7 +30,7 @@ const social = [
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/in/j%C3%A9ssica-ferreira-soueu/",
+    link: "https://www.linkedin.com/in/iamjessicaferreira/",
   },
   {
     name: "Medium",
@@ -46,7 +46,7 @@ const social = [
 
 const home = {
   label: "Home",
-  title: `${person.name}&apos;s Portfolio`,
+  title: "Jessica - AI developer",
   description: `Portfolio website showcasing my work as a ${person.role}`,
   headline: <>Jéssica Ferreira</>,
   second_headline: (
