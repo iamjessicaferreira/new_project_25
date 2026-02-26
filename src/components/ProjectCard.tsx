@@ -68,7 +68,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               {link && (
                 <Button variant="primary" onClick={() => window.open(link, "_blank")}>
                   <Text paddingRight="4" variant="body-default-s">
-                    Preview online
+                    {!code && codeLinks.length === 0
+                      ? "Visit website"
+                      : "Preview online"}
                   </Text>
                   <VscLinkExternal />
                 </Button>
